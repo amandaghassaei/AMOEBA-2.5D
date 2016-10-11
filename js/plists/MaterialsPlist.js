@@ -412,25 +412,25 @@ define([], function(){
                         torsionK:{x:80,y:80,z:80}
                     }
                 },
-                actuatorTorsion1DOF: {
-                    name: "Torsional Actuator",
-                    color: "#FFCC00",
-                    altColor: "#FFCC00",
-                    mesh: "torsion1dof",
-                    properties:{
-                        conductive: false,
-                        actuator: true,
-                        conductiveAxes: [
-                            {x:0, y:0, z:1},
-                            {x:0, y:0, z:-1}
-                        ],
-                        density: 3500,//kg/m^3
-                        longitudalK:{x:80,y:80,z:80},
-                        shearK:{xy:80,xz:80,yx:80,yz:80,zx:80,zy:80},
-                        bendingK:{x:80,y:80,z:80},
-                        torsionK:{x:80,y:80,z:80}
-                    }
-                },
+                //actuatorTorsion1DOF: {
+                //    name: "Torsional Actuator",
+                //    color: "#FFCC00",
+                //    altColor: "#FFCC00",
+                //    mesh: "torsion1dof",
+                //    properties:{
+                //        conductive: false,
+                //        actuator: true,
+                //        conductiveAxes: [
+                //            {x:0, y:0, z:1},
+                //            {x:0, y:0, z:-1}
+                //        ],
+                //        density: 3500,//kg/m^3
+                //        longitudalK:{x:80,y:80,z:80},
+                //        shearK:{xy:80,xz:80,yx:80,yz:80,zx:80,zy:80},
+                //        bendingK:{x:80,y:80,z:80},
+                //        torsionK:{x:80,y:80,z:80}
+                //    }
+                //},
                 actuatorShear: {
                     name: "Shear Actuator",
                     color: "#FFCC00",
