@@ -196,29 +196,37 @@ void main(){
     }
 
     float mass = massData.x;
-    vec3 force = u_gravity*mass;
+    float I = massData.z;//moment of inerita
+    vec3 force = vec3(0.0,0.0,0.0);
+    float rForce = 0.0;
 
-    vec3 translation = texture2D(u_lastTranslation, scaledFragCoord).xyz;
-    vec3 velocity = texture2D(u_lastVelocity, scaledFragCoord).xyz;
-    vec4 quaternion = texture2D(u_lastQuaternion, scaledFragCoord);
+    vec4 _position = texture2D(u_lastTranslation, scaledFragCoord);
+    vec4 _velocity = texture2D(u_lastVelocity, scaledFragCoord);
+
+    vec3 translation = _position.xyz;
+    float rotation = _position[3];
+    vec3 velocity = _velocity.xyz;
+    float angVelocity = _velocity[3];
+
+    vec4 quaternion = vec4(0.0, 0.0, sin(rotation/2.0), cos(rotation/2.0));
 
     vec4 wiring = texture2D(u_wires, scaledFragCoord);
     int actuatorType = convertToInt(wiring[0]);//>-1 means no actuator
 
-    //simple collision
-    float zPosition = texture2D(u_originalPosition, scaledFragCoord).z + translation.z*u_multiplier - u_groundHeight;
-    float collisionK = 1.0;
-    if (zPosition < 0.0) {
-        float normalForce = -zPosition*collisionK-velocity.z*collisionK/10.0;
-        force.z += normalForce;
-        if (u_friction > 0.5){
-            float mu = 10.0;
-            if (velocity.x > 0.0) force.x -= mu * normalForce;
-            else if (velocity.x < 0.0) force.x += mu * normalForce;
-            if (velocity.y > 0.0) force.y -= mu * normalForce;
-            else if (velocity.y < 0.0) force.y += mu * normalForce;
-        }
-    }
+//    //simple collision
+//    float zPosition = texture2D(u_originalPosition, scaledFragCoord).z + translation.z*u_multiplier - u_groundHeight;
+//    float collisionK = 1.0;
+//    if (zPosition < 0.0) {
+//        float normalForce = -zPosition*collisionK-velocity.z*collisionK/10.0;
+//        force.z += normalForce;
+//        if (u_friction > 0.5){
+//            float mu = 10.0;
+//            if (velocity.x > 0.0) force.x -= mu * normalForce;
+//            else if (velocity.x < 0.0) force.x += mu * normalForce;
+//            if (velocity.y > 0.0) force.y -= mu * normalForce;
+//            else if (velocity.y < 0.0) force.y += mu * normalForce;
+//        }
+//    }
 
     for (float i=0.0;i<2.0;i+=1.0){
 
@@ -239,9 +247,13 @@ void main(){
             neighborIndex.y += 0.5;
 
             vec2 scaledNeighborIndex = neighborIndex/u_textureDim;
-            vec3 neighborTranslation = texture2D(u_lastTranslation, scaledNeighborIndex).xyz;
-            vec3 neighborVelocity = texture2D(u_lastVelocity, scaledNeighborIndex).xyz;
-            vec4 neighborQuaternion = texture2D(u_lastQuaternion, scaledNeighborIndex);
+            vec4 _neighborPosition = texture2D(u_lastTranslation, scaledNeighborIndex);
+            vec4 _neighborVelocity = texture2D(u_lastVelocity, scaledNeighborIndex);
+            vec3 neighborTranslation = _neighborPosition.xyz;
+            float neighborRotation = _neighborPosition[3];
+            vec3 neighborVelocity = _neighborVelocity.xyz;
+            float neighborAngVelocity = _neighborVelocity[3];
+            vec4 neighborQuaternion = vec4(0.0, 0.0, sin(neighborRotation/2.0), cos(neighborRotation/2.0));
 
             vec3 nominalD = neighborOffset(i*3.0+float(j));
 
@@ -271,14 +283,21 @@ void main(){
             vec3 cellHalfNominalD = applyQuaternion(halfNominalD, quaternion);//halfNominalD in cell's reference frame
             vec3 neighborHalfNominalD = applyQuaternion(halfNominalD, neighborQuaternion);//halfNominalD in neighbor's reference frame
 
-            vec2 kIndex = vec2(((fragCoord.x-0.5)*12.0 + 2.0*(i*3.0+float(j)) + 0.5)/(u_textureDim.x*12.0), scaledFragCoord.y);
+//            vec2 kIndex = vec2(((fragCoord.x-0.5)*12.0 + 2.0*(i*3.0+float(j)) + 0.5)/(u_textureDim.x*12.0), scaledFragCoord.y);
+            float kPosition = ((fragCoord.x-0.5)*12.0 + 2.0*(i*3.0+float(j)) + 0.5);
+            vec2 kIndex = vec2(kPosition/(u_textureDim.x*12.0), scaledFragCoord.y);
             vec3 translationalK = texture2D(u_compositeKs, kIndex).xyz;
             vec3 translationalD = texture2D(u_compositeDs, kIndex).xyz;
+            kIndex.x = (kPosition+1.0)/(u_textureDim.x*12.0);
+            vec3 rotationalK = texture2D(u_compositeKs, kIndex).xyz;
+            vec3 rotationalD = texture2D(u_compositeDs, kIndex).xyz;
 
-            vec4 averageQuaternion = averageQuaternions(quaternion, neighborQuaternion);
+            float averageRotation = (neighborRotation+rotation)/2.0;
+            vec4 averageQuaternion = vec4(0.0, 0.0, sin(averageRotation/2.0), cos(averageRotation/2.0));
             vec4 averageQuaternionInverse = invertQuaternion(averageQuaternion);
+            vec3 rotatedActuatedNominalD = applyQuaternion(actuatedD, averageQuaternion);
 
-            vec3 translationalDelta = neighborTranslation - translation + nominalD - cellHalfNominalD - neighborHalfNominalD;
+            vec3 translationalDelta = neighborTranslation - translation + nominalD - rotatedActuatedNominalD;
             vec3 translationalDeltaXYZ = applyQuaternion(translationalDelta, averageQuaternionInverse);
             vec3 velocityDelta = neighborVelocity-velocity;
             vec3 velocityDeltaXYZ = applyQuaternion(velocityDelta, averageQuaternionInverse);
@@ -287,8 +306,20 @@ void main(){
             //convert _force vector back into world reference frame
             _force = applyQuaternion(_force, averageQuaternion);
             force += _force;
+
+            //translational forces cause rotation in cell
+            vec3 torque = cross(cellHalfNominalD, _force);//cellHalfNominalD = lever arm
+            rForce += torque[2];
+
+            //bending and torsion
+            float rotationDelta = neighborRotation-rotation;
+            float actuatedRotationalDelta = rotationDelta;
+            if (_actuatorType == -2) actuatedRotationalDelta -= 2.0*actuation*neighborSign(i*3.0+float(j));//bending
+
+            float angVelocityDelta = neighborAngVelocity - angVelocity;
+            rForce += rotationalK[2]*actuatedRotationalDelta + rotationalD[2]*angVelocityDelta;
         }
     }
 
-    gl_FragColor = vec4(force/mass, 0);
+    gl_FragColor = vec4(force/mass, rForce/I);
 }

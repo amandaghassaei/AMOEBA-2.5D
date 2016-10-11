@@ -142,7 +142,28 @@ define([], function(){
                         torsionK:{x:10,y:10,z:10}
                     }
                 },
-                conductive:{
+                conductive: {
+                    name: "Conductive",
+                    color: "#b5a642",
+                    altColor: "#857B64",
+                    properties:{
+                        conductive: true,
+                        conductiveAxes: [
+                            {x:0, y:0, z:1},
+                            {x:0, y:0, z:-1},
+                            {x:1, y:0, z:0},
+                            {x:-1, y:0, z:0},
+                            {x:0, y:1, z:0},
+                            {x:0, y:-1, z:0}
+                        ],
+                        density: 3500,//kg/m^3
+                        longitudalK:{x:80,y:80,z:80},
+                        shearK:{xy:80,xz:80,yx:80,yz:80,zx:80,zy:80},
+                        bendingK:{x:80,y:80,z:80},
+                        torsionK:{x:80,y:80,z:80}
+                    }
+                },
+                conductiveStraight:{
                     name: "Electronic Routing (Straight)",
                     color: "#b5a642",
                     altColor: "#857B64",
@@ -214,6 +235,28 @@ define([], function(){
                         shearK:{xy:80,xz:80,yx:80,yz:80,zx:80,zy:80},
                         bendingK:{x:80,y:80,z:80},
                         torsionK:{x:80,y:80,z:80}
+                    }
+                },
+                flexureConductiveAll: {
+                    name: "Flex Conductive",
+                    color: "#b4ac9c",
+                    altColor: "#b4ac9c",
+                    texture: "stripes",
+                    properties:{
+                        conductive: true,
+                        conductiveAxes: [
+                            {x:0, y:0, z:1},
+                            {x:0, y:0, z:-1},
+                            {x:1, y:0, z:0},
+                            {x:-1, y:0, z:0},
+                            {x:0, y:1, z:0},
+                            {x:0, y:-1, z:0}
+                        ],
+                        density: 3500,//kg/m^3
+                        longitudalK:{x:30,y:30,z:30},
+                        shearK:{xy:30,xz:30,yx:30,yz:30,zx:30,zy:30},
+                        bendingK:{x:30,y:30,z:30},
+                        torsionK:{x:30,y:30,z:30}
                     }
                 },
                 flexureCond: {

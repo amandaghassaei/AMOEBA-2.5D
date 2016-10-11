@@ -579,11 +579,11 @@ define(['underscore', 'appState', 'three'], function(_, appState, THREE){
     };
 
     DMAMaterial.prototype.getBendingK = function(){
-        return this.properties.bendingK;
+        return new THREE.Vector3(this.properties.bendingK.x, this.properties.bendingK.y, this.properties.bendingK.z);
     };
 
     DMAMaterial.prototype.getTorsionK = function(){
-        return this.properties.torsionK;
+        return new THREE.Vector3(this.properties.torsionK.x, this.properties.torsionK.y, this.properties.torsionK.z);
     };
 
     DMAMaterial.prototype.getMesh = function(){
