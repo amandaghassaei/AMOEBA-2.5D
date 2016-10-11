@@ -29,7 +29,7 @@ define(['three', 'underscore', 'backbone', 'threeModel', 'appState', 'lattice'],
         _initialize: function(){
 
             this.listenTo(appState, "change:currentNav", function(){
-                if (!this.isActive()) return;
+                if (appState.previous("currentNav") != "emNavSim") return;
                 this._navChanged();
             });
             this.listenTo(appState, "change:currentTab", function(){
