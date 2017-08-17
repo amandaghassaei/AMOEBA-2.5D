@@ -201,7 +201,9 @@ define(['underscore', 'backbone', 'threeModel', 'lattice', 'plist', 'emWire', 'G
                                 }
                             }
                         });
+                        if (wireIndices.length == 1) wireIndices.push(-2);
                         if (wireIndices.length == 2){
+                            console.log(wireIndices);
 
                             //actuator type - 0 indicates nothing, -1=longitudal, -2=bending, -3=torsional, 4, 5=shear
                             if (cell.getMaterialID() == "actuatorLinear1DOF") self.wires[rgbaIndex] = -1;
@@ -213,7 +215,7 @@ define(['underscore', 'backbone', 'threeModel', 'lattice', 'plist', 'emWire', 'G
                                 if (Math.abs(vector.x)>0.9) self.wires[rgbaIndex] = -4;
                                 else if (Math.abs(vector.y)>0.9) self.wires[rgbaIndex] = -5;
                                 else if (Math.abs(vector.z)>0.9) self.wires[rgbaIndex] = -6;
-                            }
+                            } else if (cell.getMaterialID() == "clamp") self.wires[rgbaIndex] = -7;
 
                             //use remaining three spots to indicate axial direction and wire group num
                             self.wires[rgbaIndex+1] = wireIndices[0];
@@ -340,6 +342,9 @@ define(['underscore', 'backbone', 'threeModel', 'lattice', 'plist', 'emWire', 'G
                 gpuMath.createProgram("velocityCalc", vertexShader, velocityCalcShader);
                 gpuMath.setUniformForProgram("velocityCalc", "u_acceleration", 0, "1i");
                 gpuMath.setUniformForProgram("velocityCalc", "u_lastVelocity", 1, "1i");
+                gpuMath.setUniformForProgram("velocityCalc", "u_wires", 2, "1i");
+                gpuMath.setUniformForProgram("velocityCalc", "u_wiresMeta", 3, "1i");
+                gpuMath.setUniformForProgram("velocityCalc", "u_wiresMetaLength", this.wiresMeta.length/4, "1f");
                 gpuMath.setUniformForProgram("velocityCalc", "u_mass", 2, "1i");
                 gpuMath.setUniformForProgram("velocityCalc", "u_textureDim", [textureDim, textureDim], "2f");
 
@@ -582,7 +587,8 @@ define(['underscore', 'backbone', 'threeModel', 'lattice', 'plist', 'emWire', 'G
                 gpuMath.step("accelerationCalc", ["u_lastVelocity", "u_lastTranslation", "u_mass", "u_neighborsXMapping",
                     "u_neighborsYMapping", "u_compositeKs", "u_compositeDs", "u_originalPosition", "u_lastQuaternion", "u_wires",
                     "u_wiresMeta"], "u_acceleration", time);
-                gpuMath.step("velocityCalc", ["u_acceleration", "u_lastVelocity", "u_mass"], "u_velocity");
+                gpuMath.step("velocityCalc", ["u_acceleration", "u_lastVelocity", "u_mass", "u_wires",
+                    "u_wiresMeta"], "u_velocity", time);
                 gpuMath.step("positionCalc", ["u_velocity", "u_lastTranslation", "u_mass"],
                     "u_translation");
 
@@ -1070,6 +1076,9 @@ define(['underscore', 'backbone', 'threeModel', 'lattice', 'plist', 'emWire', 'G
             },
 
             _getActuatorVoltage: function(wireIndex, time){
+                console.log(time);
+                if (wireIndex == -1) return 0;
+
                 wireIndex *= 4;
                 var wireMeta = [this.wiresMeta[wireIndex], this.wiresMeta[wireIndex+1], this.wiresMeta[wireIndex+2], this.wiresMeta[wireIndex+3]];
                 var type = wireMeta[0];

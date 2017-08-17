@@ -71,6 +71,8 @@ int convertToInt(float num){
 
 float getActuatorVoltage(float wireIndex){
 
+    if (wireIndex == -2.0) return 0.0;
+
     vec2 wireCoord = vec2(0.5, (floor(wireIndex+0.001)+0.5)/u_wiresMetaLength);
     vec4 wireMeta = texture2D(u_wiresMeta, wireCoord);
     int type = convertToInt(wireMeta[0]);
@@ -262,6 +264,13 @@ void main(){
             if (actuatorType<0 && convertToInt(wiring[3]) == neighborAxis) {
                 _actuatorType = actuatorType;
                 actuation += 0.3*(getActuatorVoltage(wiring[1]) - getActuatorVoltage(wiring[2]));
+                if (_actuatorType == -7){
+                    //clamp
+                    if (actuation>0.0) {
+                        gl_FragColor = vec4(0, 0, 0, 0);
+                        return;
+                    }
+                }
             } else {
                 vec4 neighborWiring = texture2D(u_wires, scaledNeighborIndex);
                 int neighborActuatorType = convertToInt(neighborWiring[0]);//properly wired actuator has type < 0

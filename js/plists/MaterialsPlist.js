@@ -456,11 +456,33 @@ define([], function(){
                     altColor: "#0EE3B8",
                     mesh: "siliconModule",
                     properties:{
-                        conductive: false,
+                        conductive: true,
                         silicon: true,
                         conductiveAxes: [
                             {x:1, y:0, z:0},
                             {x:-1, y:0, z:0}
+                        ],
+                        density: 3500,//kg/m^3
+                        longitudalK:{x:80,y:80,z:80},
+                        shearK:{xy:80,xz:80,yx:80,yz:80,zx:80,zy:80},
+                        bendingK:{x:80,y:80,z:80},
+                        torsionK:{x:80,y:80,z:80}
+                    }
+                },
+                clamp: {
+                    name: "Clamp",
+                    color: "#ABCDEF",
+                    altColor: "#ABCDEF",
+                    properties:{
+                        conductive: false,
+                        actuator: true,
+                        conductiveAxes: [
+                            {x:0, y:0, z:1},
+                            {x:0, y:0, z:-1},
+                            {x:1, y:0, z:0},
+                            {x:-1, y:0, z:0},
+                            {x:0, y:1, z:0},
+                            {x:0, y:-1, z:0}
                         ],
                         density: 3500,//kg/m^3
                         longitudalK:{x:80,y:80,z:80},
