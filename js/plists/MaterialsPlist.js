@@ -237,143 +237,143 @@ define([], function(){
                         torsionK:{x:80,y:80,z:80}
                     }
                 },
-                flexureConductiveAll: {
-                    name: "Flex Conductive",
-                    color: "#b4ac9c",
-                    altColor: "#b4ac9c",
-                    texture: "stripes",
-                    properties:{
-                        conductive: true,
-                        conductiveAxes: [
-                            {x:0, y:0, z:1},
-                            {x:0, y:0, z:-1},
-                            {x:1, y:0, z:0},
-                            {x:-1, y:0, z:0},
-                            {x:0, y:1, z:0},
-                            {x:0, y:-1, z:0}
-                        ],
-                        density: 3500,//kg/m^3
-                        longitudalK:{x:30,y:30,z:30},
-                        shearK:{xy:30,xz:30,yx:30,yz:30,zx:30,zy:30},
-                        bendingK:{x:30,y:30,z:30},
-                        torsionK:{x:30,y:30,z:30}
-                    }
-                },
-                flexureCond: {
-                    name: "Flex Electronic Routing (Straight)",
-                    color: "#b4ac9c",
-                    altColor: "#b4ac9c",
-                    texture: "stripes",
-                    mesh: "wireStraight",
-                    properties:{
-                        conductive: true,
-                        conductiveAxes: [
-                            {x:0, y:0, z:1},
-                            {x:0, y:0, z:-1}
-                        ],
-                        density: 3500,//kg/m^3
-                        longitudalK:{x:30,y:30,z:30},
-                        shearK:{xy:30,xz:30,yx:30,yz:30,zx:30,zy:30},
-                        bendingK:{x:30,y:30,z:30},
-                        torsionK:{x:30,y:30,z:30}
-                    }
-                },
-                flexureCondBend: {
-                    name: "Flex Electronic Routing (Bend)",
-                    color: "#b4ac9c",
-                    altColor: "#b4ac9c",
-                    texture: "stripes",
-                    mesh: "wireBent",
-                    properties:{
-                        conductive: true,
-                        conductiveAxes: [
-                            {x:1, y:0, z:0},
-                            {x:0, y:0, z:-1}
-                        ],
-                        density: 3500,//kg/m^3
-                        longitudalK:{x:30,y:30,z:30},
-                        shearK:{xy:30,xz:30,yx:30,yz:30,zx:30,zy:30},
-                        bendingK:{x:30,y:30,z:30},
-                        torsionK:{x:30,y:30,z:30}
-                    }
-                },
-                flexureCondJunction1:{
-                    name: "Electronic Routing (Split Type 1)",
-                    color: "#b4ac9c",
-                    altColor: "#b4ac9c",
-                    texture: "stripes",
-                    mesh: "wireJunction1",
-                    properties:{
-                        conductive: true,
-                        conductiveAxes: [
-                            {x:1, y:0, z:0},
-                            {x:-1, y:0, z:0},
-                            {x:0, y:0, z:-1}
-                        ],
-                        density: 3500,//kg/m^3
-                        longitudalK:{x:30,y:30,z:30},
-                        shearK:{xy:30,xz:30,yx:30,yz:30,zx:30,zy:30},
-                        bendingK:{x:30,y:30,z:30},
-                        torsionK:{x:30,y:30,z:30}
-                    }
-                },
-                flexureCondJunction2:{
-                    name: "Electronic Routing (Split Type 2)",
-                    color: "#b4ac9c",
-                    altColor: "#b4ac9c",
-                    texture: "stripes",
-                    mesh: "wireJunction2",
-                    properties:{
-                        conductive: true,
-                        conductiveAxes: [
-                            {x:1, y:0, z:0},
-                            {x:0, y:1, z:0},
-                            {x:0, y:0, z:-1}
-                        ],
-                        density: 3500,//kg/m^3
-                        longitudalK:{x:30,y:30,z:30},
-                        shearK:{xy:30,xz:30,yx:30,yz:30,zx:30,zy:30},
-                        bendingK:{x:30,y:30,z:30},
-                        torsionK:{x:30,y:30,z:30}
-                    }
-                },
-                flexureConductiveBend1dof: {
-                    name: "Conductive 1 DOF Hinge",
-                    color: "#b4ac9c",
-                    altColor: "#b4ac9c",
-                    texture: "stripes",
-                    mesh: "bending1dof",
-                    properties:{
-                        conductive: true,
-                        density: 3500,//kg/m^3
-                        conductiveAxes: [
-                            {x:1, y:0, z:0},
-                            {x:-2, y:0, z:0}
-                        ],
-                        longitudalK:{x:80,y:80,z:80},
-                        shearK:{xy:80,xz:80,yx:80,yz:80,zx:80,zy:80},
-                        bendingK:{x:80,y:80,z:2},
-                        torsionK:{x:80,y:80,z:80}
-                    }
-                },
-                flexureConductiveShear1DOF: {
-                    name: "Conductive Shear Flexure",
-                    color: "#b4ac9c",
-                    altColor: "#b4ac9c",
-                    texture: "cubeTextureShearFlex",
-                    properties:{
-                        conductive: true,
-                        density: 3500,//kg/m^3
-                        conductiveAxes: [
-                            {x:0, y:0, z:1},
-                            {x:0, y:0, z:-1}
-                        ],
-                        longitudalK:{x:80,y:80,z:80},
-                        shearK:{xy:80,xz:80,yx:80,yz:80,zx:2,zy:80},
-                        bendingK:{x:80,y:80,z:80},
-                        torsionK:{x:80,y:80,z:80}
-                    }
-                },
+                // flexureConductiveAll: {
+                //     name: "Flex Conductive",
+                //     color: "#b4ac9c",
+                //     altColor: "#b4ac9c",
+                //     texture: "stripes",
+                //     properties:{
+                //         conductive: true,
+                //         conductiveAxes: [
+                //             {x:0, y:0, z:1},
+                //             {x:0, y:0, z:-1},
+                //             {x:1, y:0, z:0},
+                //             {x:-1, y:0, z:0},
+                //             {x:0, y:1, z:0},
+                //             {x:0, y:-1, z:0}
+                //         ],
+                //         density: 3500,//kg/m^3
+                //         longitudalK:{x:30,y:30,z:30},
+                //         shearK:{xy:30,xz:30,yx:30,yz:30,zx:30,zy:30},
+                //         bendingK:{x:30,y:30,z:30},
+                //         torsionK:{x:30,y:30,z:30}
+                //     }
+                // },
+                // flexureCond: {
+                //     name: "Flex Electronic Routing (Straight)",
+                //     color: "#b4ac9c",
+                //     altColor: "#b4ac9c",
+                //     texture: "stripes",
+                //     mesh: "wireStraight",
+                //     properties:{
+                //         conductive: true,
+                //         conductiveAxes: [
+                //             {x:0, y:0, z:1},
+                //             {x:0, y:0, z:-1}
+                //         ],
+                //         density: 3500,//kg/m^3
+                //         longitudalK:{x:30,y:30,z:30},
+                //         shearK:{xy:30,xz:30,yx:30,yz:30,zx:30,zy:30},
+                //         bendingK:{x:30,y:30,z:30},
+                //         torsionK:{x:30,y:30,z:30}
+                //     }
+                // },
+                // flexureCondBend: {
+                //     name: "Flex Electronic Routing (Bend)",
+                //     color: "#b4ac9c",
+                //     altColor: "#b4ac9c",
+                //     texture: "stripes",
+                //     mesh: "wireBent",
+                //     properties:{
+                //         conductive: true,
+                //         conductiveAxes: [
+                //             {x:1, y:0, z:0},
+                //             {x:0, y:0, z:-1}
+                //         ],
+                //         density: 3500,//kg/m^3
+                //         longitudalK:{x:30,y:30,z:30},
+                //         shearK:{xy:30,xz:30,yx:30,yz:30,zx:30,zy:30},
+                //         bendingK:{x:30,y:30,z:30},
+                //         torsionK:{x:30,y:30,z:30}
+                //     }
+                // },
+                // flexureCondJunction1:{
+                //     name: "Electronic Routing (Split Type 1)",
+                //     color: "#b4ac9c",
+                //     altColor: "#b4ac9c",
+                //     texture: "stripes",
+                //     mesh: "wireJunction1",
+                //     properties:{
+                //         conductive: true,
+                //         conductiveAxes: [
+                //             {x:1, y:0, z:0},
+                //             {x:-1, y:0, z:0},
+                //             {x:0, y:0, z:-1}
+                //         ],
+                //         density: 3500,//kg/m^3
+                //         longitudalK:{x:30,y:30,z:30},
+                //         shearK:{xy:30,xz:30,yx:30,yz:30,zx:30,zy:30},
+                //         bendingK:{x:30,y:30,z:30},
+                //         torsionK:{x:30,y:30,z:30}
+                //     }
+                // },
+                // flexureCondJunction2:{
+                //     name: "Electronic Routing (Split Type 2)",
+                //     color: "#b4ac9c",
+                //     altColor: "#b4ac9c",
+                //     texture: "stripes",
+                //     mesh: "wireJunction2",
+                //     properties:{
+                //         conductive: true,
+                //         conductiveAxes: [
+                //             {x:1, y:0, z:0},
+                //             {x:0, y:1, z:0},
+                //             {x:0, y:0, z:-1}
+                //         ],
+                //         density: 3500,//kg/m^3
+                //         longitudalK:{x:30,y:30,z:30},
+                //         shearK:{xy:30,xz:30,yx:30,yz:30,zx:30,zy:30},
+                //         bendingK:{x:30,y:30,z:30},
+                //         torsionK:{x:30,y:30,z:30}
+                //     }
+                // },
+                // flexureConductiveBend1dof: {
+                //     name: "Conductive 1 DOF Hinge",
+                //     color: "#b4ac9c",
+                //     altColor: "#b4ac9c",
+                //     texture: "stripes",
+                //     mesh: "bending1dof",
+                //     properties:{
+                //         conductive: true,
+                //         density: 3500,//kg/m^3
+                //         conductiveAxes: [
+                //             {x:1, y:0, z:0},
+                //             {x:-2, y:0, z:0}
+                //         ],
+                //         longitudalK:{x:80,y:80,z:80},
+                //         shearK:{xy:80,xz:80,yx:80,yz:80,zx:80,zy:80},
+                //         bendingK:{x:80,y:80,z:2},
+                //         torsionK:{x:80,y:80,z:80}
+                //     }
+                // },
+                // flexureConductiveShear1DOF: {
+                //     name: "Conductive Shear Flexure",
+                //     color: "#b4ac9c",
+                //     altColor: "#b4ac9c",
+                //     texture: "cubeTextureShearFlex",
+                //     properties:{
+                //         conductive: true,
+                //         density: 3500,//kg/m^3
+                //         conductiveAxes: [
+                //             {x:0, y:0, z:1},
+                //             {x:0, y:0, z:-1}
+                //         ],
+                //         longitudalK:{x:80,y:80,z:80},
+                //         shearK:{xy:80,xz:80,yx:80,yz:80,zx:2,zy:80},
+                //         bendingK:{x:80,y:80,z:80},
+                //         torsionK:{x:80,y:80,z:80}
+                //     }
+                // },
                 actuatorLinear1DOF: {
                     name: "Linear Actuator",
                     color: "#FFCC00",
@@ -451,7 +451,7 @@ define([], function(){
                     }
                 },
                 signal: {
-                    name: "Signal Generator",
+                    name: "Motor Driver",
                     color: "#0EE3B8",
                     altColor: "#0EE3B8",
                     mesh: "siliconModule",
@@ -470,27 +470,73 @@ define([], function(){
                     }
                 },
                 clamp: {
-                    name: "Clamp",
+                    name: "Flip Flop",
                     color: "#ABCDEF",
                     altColor: "#ABCDEF",
                     properties:{
                         conductive: false,
-                        actuator: true,
-                        conductiveAxes: [
-                            {x:0, y:0, z:1},
-                            {x:0, y:0, z:-1},
-                            {x:1, y:0, z:0},
-                            {x:-1, y:0, z:0},
-                            {x:0, y:1, z:0},
-                            {x:0, y:-1, z:0}
-                        ],
+                        actuator: false,
+                        // conductiveAxes: [
+                        //     {x:0, y:0, z:1},
+                        //     {x:0, y:0, z:-1},
+                        //     {x:1, y:0, z:0},
+                        //     {x:-1, y:0, z:0},
+                        //     {x:0, y:1, z:0},
+                        //     {x:0, y:-1, z:0}
+                        // ],
                         density: 3500,//kg/m^3
                         longitudalK:{x:80,y:80,z:80},
                         shearK:{xy:80,xz:80,yx:80,yz:80,zx:80,zy:80},
                         bendingK:{x:80,y:80,z:80},
                         torsionK:{x:80,y:80,z:80}
                     }
-                }//,
+                },
+                clock: {
+                    name: "Clock",
+                    color: "#F99987",
+                    altColor: "#F99987",
+                    properties:{
+                        conductive: false,
+                        actuator: false,
+                        // conductiveAxes: [
+                        //     {x:0, y:0, z:1},
+                        //     {x:0, y:0, z:-1},
+                        //     {x:1, y:0, z:0},
+                        //     {x:-1, y:0, z:0},
+                        //     {x:0, y:1, z:0},
+                        //     {x:0, y:-1, z:0}
+                        // ],
+                        density: 3500,//kg/m^3
+                        longitudalK:{x:80,y:80,z:80},
+                        shearK:{xy:80,xz:80,yx:80,yz:80,zx:80,zy:80},
+                        bendingK:{x:80,y:80,z:80},
+                        torsionK:{x:80,y:80,z:80}
+                    }
+                },
+                inverter: {
+                    name: "Inverter",
+                    color: "#ff00ff",
+                    altColor: "#ff00ff",
+                    properties:{
+                        conductive: false,
+                        actuator: false,
+                        // conductiveAxes: [
+                        //     {x:0, y:0, z:1},
+                        //     {x:0, y:0, z:-1},
+                        //     {x:1, y:0, z:0},
+                        //     {x:-1, y:0, z:0},
+                        //     {x:0, y:1, z:0},
+                        //     {x:0, y:-1, z:0}
+                        // ],
+                        density: 3500,//kg/m^3
+                        longitudalK:{x:80,y:80,z:80},
+                        shearK:{xy:80,xz:80,yx:80,yz:80,zx:80,zy:80},
+                        bendingK:{x:80,y:80,z:80},
+                        torsionK:{x:80,y:80,z:80}
+                    }
+                }
+
+                //,
                 //transistor: {
                 //    name: "Transistor (Coming Soon)",
                 //    color: "#0EE3B8",

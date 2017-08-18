@@ -6,7 +6,7 @@
 define(['underscore', 'three'], function(_, THREE){
 
     //var camera = new THREE.CombinedCamera( window.innerWidth / 2, window.innerHeight / 2, 60, 0.01, 1000, - 500, 1000 );
-    var camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.01, 1000);
+    var camera = new THREE.OrthographicCamera(window.innerWidth / -2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / -2, -10000, 10000);
     //camera.setLens(50);
     var scene = new THREE.Scene();
     var simScene = new THREE.Scene();
@@ -45,6 +45,8 @@ define(['underscore', 'three'], function(_, THREE){
     function initialize(){
 
         camera.up.set(0,0,1);//set z axis as "up"
+        camera.zoom = 20;
+        camera.updateProjectionMatrix();
         resetCameraPosition();
 
 //        scene.fog = new THREE.FogExp2(fogColor, 0.001);
@@ -99,7 +101,10 @@ define(['underscore', 'three'], function(_, THREE){
     }
 
     function onWindowResize(){
-        camera.aspect = window.innerWidth/window.innerHeight;
+        this.camera.left = -window.innerWidth / 2;
+                this.camera.right = window.innerWidth / 2;
+                this.camera.top = window.innerHeight / 2;
+                this.camera.bottom = -window.innerHeight / 2;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
         render();

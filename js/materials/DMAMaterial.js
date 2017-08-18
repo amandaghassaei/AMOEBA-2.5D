@@ -518,8 +518,13 @@ define(['underscore', 'appState', 'three'], function(_, appState, THREE){
     };
 
     DMAMaterial.prototype._makeMaterialObject = function(color, transparent){
-        if (transparent) return new THREE.MeshLambertMaterial({color:color, transparent:true, opacity:0.4});
-        var json = {color: color};
+        var polygonOffset  = 0.5;
+        if (transparent) return new THREE.MeshLambertMaterial({color:color, transparent:true, opacity:0.4,polygonOffset: true,
+            polygonOffsetFactor: polygonOffset, // positive value pushes polygon further away
+            polygonOffsetUnits: 1});
+        var json = {color: color, polygonOffset: true,
+            polygonOffsetFactor: polygonOffset, // positive value pushes polygon further away
+            polygonOffsetUnits: 1};
         var material = new THREE.MeshLambertMaterial(json);
         if (this.texture) {
             textureLoader.load("assets/textures/"+this.texture+".png", function(texture){
