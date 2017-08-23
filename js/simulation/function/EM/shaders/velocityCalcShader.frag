@@ -20,6 +20,8 @@ int convertToInt(float num){
 
 float getActuatorVoltage(float wireIndex){
 
+    if (wireIndex == -2.0) return 0.0;
+
     vec2 wireCoord = vec2(0.5, (floor(wireIndex+0.001)+0.5)/u_wiresMetaLength);
     vec4 wireMeta = texture2D(u_wiresMeta, wireCoord);
     int type = convertToInt(wireMeta[0]);

@@ -32,14 +32,14 @@ define([], function(){
                         conductive: false,
                         density: 3500,//kg/m^3
                         longitudalK:{x:80,y:80,z:80},
-                        conductiveAxes: [
-                            {x:0, y:0, z:1},
-                            {x:0, y:0, z:-1},
-                            {x:1, y:0, z:0},
-                            {x:-1, y:0, z:0},
-                            {x:0, y:1, z:0},
-                            {x:0, y:-1, z:0}
-                        ],
+                        // conductiveAxes: [
+                        //     {x:0, y:0, z:1},
+                        //     {x:0, y:0, z:-1},
+                        //     {x:1, y:0, z:0},
+                        //     {x:-1, y:0, z:0},
+                        //     {x:0, y:1, z:0},
+                        //     {x:0, y:-1, z:0}
+                        // ],
                         shearK:{xy:80,xz:80,yx:80,yz:80,zx:80,zy:80},
                         bendingK:{x:80,y:80,z:80},
                         torsionK:{x:80,y:80,z:80}
@@ -54,10 +54,10 @@ define([], function(){
                     properties:{
                         conductive: false,
                         density: 3500,//kg/m^3
-                        conductiveAxes: [
-                            {x:1, y:0, z:0},
-                            {x:-2, y:0, z:0}
-                        ],
+                        // conductiveAxes: [
+                        //     {x:1, y:0, z:0},
+                        //     {x:-2, y:0, z:0}
+                        // ],
                         longitudalK:{x:80,y:80,z:80},
                         shearK:{xy:80,xz:80,yx:80,yz:80,zx:80,zy:80},
                         bendingK:{x:80,y:80,z:2},
@@ -73,10 +73,10 @@ define([], function(){
                     properties:{
                         conductive: false,
                         density: 3500,//kg/m^3
-                        conductiveAxes: [
-                            {x:1, y:0, z:0},
-                            {x:-2, y:0, z:0}
-                        ],
+                        // conductiveAxes: [
+                        //     {x:1, y:0, z:0},
+                        //     {x:-2, y:0, z:0}
+                        // ],
                         longitudalK:{x:80,y:80,z:80},
                         shearK:{xy:80,xz:80,yx:80,yz:80,zx:80,zy:80},
                         bendingK:{x:80,y:2,z:2},
@@ -92,10 +92,10 @@ define([], function(){
                     properties:{
                         conductive: false,
                         density: 3500,//kg/m^3
-                        conductiveAxes: [
-                            {x:0, y:0, z:1},
-                            {x:0, y:0, z:-1}
-                        ],
+                        // conductiveAxes: [
+                        //     {x:0, y:0, z:1},
+                        //     {x:0, y:0, z:-1}
+                        // ],
                         longitudalK:{x:80,y:80,z:80},
                         shearK:{xy:80,xz:80,yx:80,yz:80,zx:80,zy:80},
                         bendingK:{x:80,y:80,z:80},
@@ -110,10 +110,10 @@ define([], function(){
                     properties:{
                         conductive: false,
                         density: 3500,//kg/m^3
-                        conductiveAxes: [
-                            {x:0, y:0, z:1},
-                            {x:0, y:0, z:-1}
-                        ],
+                        // conductiveAxes: [
+                        //     {x:0, y:0, z:1},
+                        //     {x:0, y:0, z:-1}
+                        // ],
                         longitudalK:{x:80,y:80,z:80},
                         shearK:{xy:80,xz:80,yx:80,yz:80,zx:2,zy:80},
                         bendingK:{x:80,y:80,z:80},
@@ -127,14 +127,14 @@ define([], function(){
                     texture: "stripes",
                     properties:{
                         conductive: false,
-                        conductiveAxes: [
-                            {x:0, y:0, z:1},
-                            {x:0, y:0, z:-1},
-                            {x:1, y:0, z:0},
-                            {x:-1, y:0, z:0},
-                            {x:0, y:1, z:0},
-                            {x:0, y:-1, z:0}
-                        ],
+                        // conductiveAxes: [
+                        //     {x:0, y:0, z:1},
+                        //     {x:0, y:0, z:-1},
+                        //     {x:1, y:0, z:0},
+                        //     {x:-1, y:0, z:0},
+                        //     {x:0, y:1, z:0},
+                        //     {x:0, y:-1, z:0}
+                        // ],
                         density: 3500,//kg/m^3
                         longitudalK:{x:10,y:10,z:10},
                         shearK:{xy:10,xz:10,yx:10,yz:10,zx:10,zy:10},

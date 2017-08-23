@@ -463,19 +463,19 @@ define(['underscore', 'backbone', 'threeModel', 'lattice', 'plist', 'emWire', 'G
             resetWiresMetaTexture: function(wires){
                 if (!wires) wires = this.get("wires");
                 var wiresMeta = new Float32Array(_.keys(wires).length*4);
-                var index = 0;
-                _.each(wires, function(wire){
+                for (var index=0;index<(_.values(wires)).length;index++){
+                    var wire = (_.values(wires))[index];
                     var i = index*4;
                     var signal = wire.getSignal();
                     if (!signal) {
                         wiresMeta[i] = -1;//no signal generator on this wire
-                        return;
+                        continue;
                     }
 
                     var polarity = wire.getPolarity();
                     var waveformType = signal.waveformType;
                     if (waveformType == "sine"){
-                        wiresMeta[i] = 0+polarity*4;
+                        wiresMeta[i] = polarity*4;
                     } else if (waveformType == "square"){
                         wiresMeta[i] = 1+polarity*4;
                         wiresMeta[i+3] = signal.pwm
@@ -488,8 +488,7 @@ define(['underscore', 'backbone', 'threeModel', 'lattice', 'plist', 'emWire', 'G
                     wiresMeta[i+1] = signal.frequency;
                     wiresMeta[i+2] = signal.phase;
 
-                    index++;
-                });
+                }
                 this.wiresMeta = wiresMeta;
                 if (this.wiresMeta.length == 0) this.wiresMeta = new Float32Array(4);//don't send in empty array as texture
                 gpuMath.initTextureFromData("u_wiresMeta", 1, this.wiresMeta.length/4, "FLOAT", this.wiresMeta, true);
