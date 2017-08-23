@@ -1161,3 +1161,32 @@ define(['underscore', 'backbone', 'threeModel', 'lattice', 'plist', 'emWire', 'G
 
 
     });
+
+// require(["lattice", "threeModel"], function(lattice, three){
+//     var cellsMin = lattice.get("cellsMin");
+//     var obj = new THREE.Object3D();
+//     three.sceneAdd(obj);
+//     obj.add(lattice.cells[-34-cellsMin.x][11-cellsMin.y][0-cellsMin.z].object3D);
+//     obj.add(lattice.cells[-33-cellsMin.x][13-cellsMin.y][0-cellsMin.z].object3D);
+//     obj.add(lattice.cells[-34-cellsMin.x][13-cellsMin.y][0-cellsMin.z].object3D);
+//     obj.add(lattice.cells[-32-cellsMin.x][13-cellsMin.y][0-cellsMin.z].object3D);
+//     obj.add(lattice.cells[-32-cellsMin.x][14-cellsMin.y][0-cellsMin.z].object3D);
+//     obj.add(lattice.cells[-32-cellsMin.x][15-cellsMin.y][0-cellsMin.z].object3D);
+//     obj.add(lattice.cells[-30-cellsMin.x][15-cellsMin.y][0-cellsMin.z].object3D);
+//     obj.add(lattice.cells[-31-cellsMin.x][15-cellsMin.y][0-cellsMin.z].object3D);
+//     lattice.cells[-29-cellsMin.x][15-cellsMin.y][0-cellsMin.z].object3D.visible = false;
+//     obj.add(lattice.cells[-34-cellsMin.x][15-cellsMin.y][0-cellsMin.z].object3D);
+//     obj.add(lattice.cells[-33-cellsMin.x][15-cellsMin.y][0-cellsMin.z].object3D);
+//     obj.add(lattice.cells[-34-cellsMin.x][14-cellsMin.y][0-cellsMin.z].object3D);
+//     obj.add(lattice.cells[-34-cellsMin.x][12-cellsMin.y][0-cellsMin.z].object3D);
+//     lattice.cells[-34-cellsMin.x][10-cellsMin.y][0-cellsMin.z].object3D.visible = false;
+//     obj.scale.set(3,3,3);
+//     obj.position.set(65, -32, 1);
+//     three.render();
+// });
+//
+// require(["lattice", "threeModel"], function(lattice, three){
+//     var cellsMin = lattice.get("cellsMin");
+//     lattice.cells[-29-cellsMin.x][15-cellsMin.y][0-cellsMin.z].object3D.visible = false;
+//     lattice.cells[-34-cellsMin.x][10-cellsMin.y][0-cellsMin.z].object3D.visible = false;
+// });
